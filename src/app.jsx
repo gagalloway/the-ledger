@@ -2316,7 +2316,8 @@ export default function App() {
 
   return (
     <ThemeCtx.Provider value={C}>
-      <div style={{ minHeight: "100vh", background: C.bg, fontFamily: SYS, color: C.label }}>
+      <div style={{ minHeight: "100vh", background: C.bg, fontFamily: SYS, color: C.label,paddingBottom: "env(safe-area-inset-bottom)" }}>
+      <div style={{ position: "fixed", top: 0, left: 0, right: 0,height: "env(safe-area-inset-top)", background: C.bg, zIndex: 100 }} />
         <style>{`button:active{opacity:.7} input::placeholder{color:${C.tertiary}}
           @keyframes ybPop{0%{transform:scale(.7);opacity:0}45%{transform:scale(1.06);opacity:1}100%{transform:scale(1);opacity:1}}
           @keyframes ybBounce{0%{transform:scale(.5) translateY(20px);opacity:0}60%{transform:scale(1.08) translateY(0);opacity:1}100%{transform:scale(1);opacity:1}}
@@ -2324,7 +2325,7 @@ export default function App() {
           @keyframes ybDim{from{opacity:0}to{opacity:1}}
           @keyframes ybUp{from{transform:translateY(60px);opacity:.4}to{transform:translateY(0);opacity:1}}
           @media (prefers-reduced-motion: reduce){*{transition:none!important;animation-duration:.01ms!important}}`}</style>
-        <div style={{ maxWidth: 560, margin: "0 auto", padding: "14px 16px 100px" }}>
+      <div style={{ maxWidth: 560, margin: "0 auto",padding: "calc(14px + env(safe-area-inset-top)) 16px 100px" }}>
           {tab === "home" && (screen === "dash" || (screen === "logger" && !data.activeRound)) && (
             <Home data={data} stats={stats} theme={data.theme}
               onToggleTheme={() => setData((d) => ({ ...d, theme: d.theme === "dark" ? "light" : "dark" }))}
